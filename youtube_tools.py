@@ -8,7 +8,7 @@ DEVELOPER_KEY = "AIzaSyAtb1YJhXxXYq1nqkFft8TZvS9yVz253mQ"
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
-def youtube_search(q, max_results = 5, order = "relevance", token = None, location = None, location_radius = None):
+def youtube_search(q, max_results = 5, order = "relevance", token = None, location = None, location_radius = None, video_duration = 'any'):
 
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
 
@@ -20,7 +20,8 @@ def youtube_search(q, max_results = 5, order = "relevance", token = None, locati
         part = "id, snippet",
         maxResults = max_results,
         location = location,
-        locationRadius = location_radius
+        locationRadius = location_radius,
+        videoDuration = video_duration
     ).execute()
 
     #print(search_response)
@@ -40,20 +41,26 @@ def youtube_stats(v):
 
     return stats
 
-a = youtube_search("dua lipa")
-test = a['items'][0]
-#b = pprint.pformat(test)
-video = youtube_stats(test)
-c = pprint.pformat(video)
-print(video)
-e = json.dumps(video)
-c = pprint.pformat(e)
-print(c)
-d = json.loads(e)
-d = pprint.pformat(d)
-print(d)
-#print(b)
-#print(a['items'])
-print(type(a))
-print(len(a))
-    
+
+
+'''a = youtube_search("ed sheeran")
+items = a['items']
+
+arqout = open("out.json", 'w')
+#arqout.write(json.dumps(items))
+
+for item in items:
+    arqout.write(json.dumps(item))
+    arqout.write("\n")
+'''
+'''beauty = pprint.pformat(a)
+print(beauty)
+arqout = open("out.json", 'w')
+arqout.write(json.dumps(a))
+
+nexttoken = a["nextPageToken"]
+b = youtube_search("ed sheeran", token=nexttoken)
+beauty = pprint.pformat(b)
+print(beauty)
+arqout.write(json.dumps(b))'''
+   
