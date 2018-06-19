@@ -4,7 +4,9 @@ import youtube_tools as yt
 
 txt = open("items.json").read()
 videos = json.loads(txt)
+aux = open("temporario.json").read()
 prov = open("temporario.json", 'w')
+prov.write(aux)
 ed = 0
 missing = {}
 missing['stats'] = 0
@@ -24,8 +26,13 @@ except KeyError as err:
 
 print("passou")'''
 
+count = str(aux).count("videoId")
 
 for video in videos:
+    if ed < count:
+        ed += 1 
+        continue
+
     info = yt.youtube_stats(video)
     try:
         video['stats'] = info['items'][0]['statistics']
