@@ -89,7 +89,9 @@ def add_to_list(dic):
 
     return len(all_lists)
 
-items = search_list_generate("ed sheeran", 3000, "short")
+
+
+items = search_list_generate("ed sheeran what do i know", 300, "medium")
 
 num = add_to_list(items)
 

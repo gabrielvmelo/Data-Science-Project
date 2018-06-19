@@ -32,16 +32,42 @@ def youtube_stats(v):
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
 
     b = pprint.pformat(v)
-    print(b)
+    #print(b)
 
     stats = youtube.videos().list(
         id = v['id']['videoId'],
-        part = "statistics, snippet"
+        part = "statistics, snippet, contentDetails"
     ).execute()
 
     return stats
 
-
+'''a = open("items.json").read()
+b = json.loads(a)
+print(type(b))
+c = youtube_stats(b[0])
+pprint.pprint(c)
+b[0]['stats'] = c['items'][0]['statistics']
+b[0]['tags'] = c['items'][0]['snippet']['tags']
+b[0]['contentDetails'] = c['items'][0]['contentDetails']
+b[0]['categoryId'] = c['items'][0]['snippet']['categoryId']
+b[0]['publishedAt'] = c['items'][0]['snippet']['publishedAt']
+pprint.pprint(b[0])'''
+'''
+for i in range(200):
+    
+    at = b[i+300]
+    
+    video = youtube_stats(at)
+    print(type(video))
+    
+    items = video['items']
+    #print(type(items))
+    #print(len(video))
+    #print(items)
+    if items[0]['contentDetails']['definition'] != "hd":
+        print(items[0]['contentDetails']['definition'])
+    a += 1     
+#pprint.pprint(c)'''
 
 '''a = youtube_search("ed sheeran")
 items = a['items']
