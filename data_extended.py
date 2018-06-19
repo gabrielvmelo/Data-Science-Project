@@ -4,6 +4,7 @@ import youtube_tools as yt
 
 txt = open("items.json").read()
 videos = json.loads(txt)
+prov = open("temporario.json", 'w')
 ed = 0
 missing = {}
 missing['stats'] = 0
@@ -88,6 +89,8 @@ for video in videos:
         print("{} - My".format(ed))
 
     ed += 1
+    prov.write(json.dumps(video))
+
 
 print("\nStats Missing")
 print("Missing stats - {}".format(missing['stats']))
