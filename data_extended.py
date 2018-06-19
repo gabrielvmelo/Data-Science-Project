@@ -96,7 +96,7 @@ for video in videos:
         print("{} - My".format(ed))
 
     ed += 1
-    prov.write(json.dumps(video))
+    prov.write(json.dumps(video) + "\n")
 
 
 print("\nStats Missing")
