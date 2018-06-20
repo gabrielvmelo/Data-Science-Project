@@ -5,7 +5,7 @@ import youtube_tools as yt
 txt = open("items.json").read()
 videos = json.loads(txt)
 aux = open("temporario.json").read()
-prov = open("temporario.json", 'w')
+prov = open("temporario2.json", 'w')
 prov.write(aux)
 ed = 0
 missing = {}
