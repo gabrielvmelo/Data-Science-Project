@@ -4,7 +4,7 @@ import youtube_tools as yt
 
 txt = open("items.json").read()
 videos = json.loads(txt)
-aux = open("temporario.json").read()
+aux = open("temporario2.json").read()
 prov = open("temporario2.json", 'w')
 prov.write(aux)
 ed = 0
@@ -106,5 +106,5 @@ print("Missing contentDetails - {}".format(missing['contentDetails']))
 print("Missing categoryId - {}".format(missing['categoryId']))
 print("Missing publishedAt - {}".format(missing['publishedAt']))
 
-out = open("items_extended.json", 'w')
+out = open("items_extended2.json", 'w')
 out.write(json.dumps(videos))

@@ -2,22 +2,6 @@ import json
 import pprint
 import youtube_tools as yt
 
-def check_title(item, word):
-    
-    title = item['snippet']['title']
-    if(word in title):
-        return 1
-    else:
-        return 0
-
-def check_description(item, word):
-    
-    description = item['snippet']['description']
-    if word in description:
-        return 1
-    else:
-        return 0
-
 def search_list_generate(q, n, t):
     num = n // 50
     res = n % 50
