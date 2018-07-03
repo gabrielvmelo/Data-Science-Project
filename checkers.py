@@ -89,14 +89,14 @@ def dur_category(time):
 
     return time_total
 
-arq = open("saida/ed_dataset.json").read()
+arq = open("saida_completa/ed_dataset_complete.json").read()
 videos = json.loads(arq)
 a = 18765
 pprint.pprint(videos[a])
 
 lens = []
 tipos = []
-
+oficial_channel = "UC0C-w0YjGpqDXGB8IHb662A"
 
 
 for video in videos:
@@ -112,6 +112,9 @@ for video in videos:
     live_title = check_title(video, "live")
     live_description = check_description(video, "live")
     live_tag = check_tag(video, "live")
+    instrument_title = check_title(video, "instrumental")
+    instrument_description = check_description(video, "instrumental")
+    instrument_tag = check_tag(video, "instrumental")
 
     video['coverTitle'] = cover_title
     video['coverDescription'] = cover_description
@@ -125,9 +128,17 @@ for video in videos:
     video['liveTitle'] = live_title
     video['liveDescription'] = live_description
     video['liveTag'] = live_tag
+    video['instrumentalTitle'] = instrument_title
+    video['instrumentalDescription'] = instrument_description
+    video['instrumentalTag'] = instrument_tag
     video['durationCategory'] = dur_category(video['contentDetails']['duration'])
     aux = len(video['contentDetails']['duration'])
     idChannel = []
+
+    if video['snippet']['channelId'] == oficial_channel:
+        video['isOfficialChannel'] = 1
+    else:
+        video['isOfficialChannel'] = 0
 
     if aux > 14:
         pprint.pprint(video)
@@ -150,6 +161,6 @@ print(idChannel)
 for i in tipos:
     print("{} - {} - {}".format(i, convert_duration(i), dur_category(i)))
 
-arqout = open("saida_completa/ed_dataset_complete.json", 'w')
+arqout = open("saida_completa/ed_dataset_complete_2.json", 'w')
 
 arqout.write(json.dumps(videos))
